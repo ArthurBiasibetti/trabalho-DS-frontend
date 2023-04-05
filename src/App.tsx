@@ -8,9 +8,8 @@ import HttpClient from './config/axios'
 
 const uploadFile = (file: File) => {
   const formData = new FormData();
-  formData.append(file.name, file)
-  console.log(formData)
-  HttpClient.api.post('/file', formData);
+  formData.append('file', file)
+  HttpClient.api.post('/file', formData  );
 }
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
 
   return (
     <div className={style.App}>
-        <input type='file' accept='.csv' formEncType="multipart/form-data" onChange={
+        <input type='file' onChange={
           (e) => {console.log(e.target.files && e.target.files[0])
          if(e.target.files) uploadFile(e.target.files[0])}
         }/>
