@@ -1,7 +1,9 @@
 .App {
+  display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  place-content: center;
   text-align: center;
 }
 
@@ -16,6 +18,11 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.input-wrapper{
+  width: 300px;
+  height: 200px;
 }
 
 @keyframes logo-spin {
