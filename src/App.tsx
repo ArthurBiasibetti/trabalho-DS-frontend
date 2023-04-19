@@ -1,32 +1,45 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { getDemo } from './api/demo'
+
+import HttpClient from './config/axios'
+
+import { UploadInput } from './components/UploadInput'
+import { Table } from './components/Table'
 
 import style from './App.module.scss'
-import HttpClient from './config/axios'
-import { UploadInput } from './components/UploadInput'
 
-const uploadFile = (file: File, cb: (data: any[]) => void) => {
-  const formData = new FormData();
-  formData.append('file', file)
-  HttpClient.api.post('/file', formData  ).then((data) => cb(JSON.parse(data.request.response).data as any[]));
-}
+const DATA_PER_PAGE = 50
 
 function App() {
-
   const [data, setData] = useState<any[]>([]);
+  const [fields, setFields] = useState<any[]>([]);
+  const [page, setPage] = useState<number>(1);
 
+  const uploadFile = (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file)
+    HttpClient.api.post('/file', formData  ).then((data) => {
+      const object = JSON.parse(data.request.response)
+      setData(object.data);
+      setFields(object.meta.fields)
+    });
+  }
 
 
   return (
     <div className={style.App}>
-        <div className={style['input-wrapper']}  >
-          {!data.length && <UploadInput onChange={(file) => uploadFile(file, (data) => setData(data))}/>}
-        </div>
-        <div className={style['data-wrapper']}>
-          {!!data.length && data.map((data) => <p key={data.NUMERO}>{data.NUMERO} | {data.DESCRICAO}</p>)}
-        </div>
+        {!data.length &&
+          <div className={style['input-wrapper']}  >
+            <UploadInput onChange={uploadFile}/>
+          </div>
+        }
+         {!!data.length &&
+         <>
+          <div className={style['data-wrapper']}>
+            <Table data={data} fields={fields} page={page} pageLength={DATA_PER_PAGE}/>
+          </div>
+           <p> Página: {Array(Math.ceil(data.length / DATA_PER_PAGE)).fill('').map((_, index ) => <span className={`${style["page-number"]} ${index + 1 === page ? style.current : '' }`} onClick={() => setPage(index + 1)}>{index + 1}</span> )}</p> 
+         </>
+        }
     </div>
   )
 }

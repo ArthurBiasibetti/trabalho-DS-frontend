@@ -9,6 +9,7 @@
   border: 2px dashed gray;
   border-radius: 8px;
 
+  cursor: pointer;
   &.is_over {
     background-color: rgba(green, 0.1);
     color: green;

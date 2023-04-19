@@ -1,0 +1,27 @@
+.table {
+  position: relative;
+  border-collapse: collapse;
+  th {
+    background: #37B477;
+  }
+
+  thead{
+    position: sticky;
+    top: -1px;
+    left:0;
+  }
+
+  th, td {
+    padding: 8px 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+
+    max-width: 300px;
+  }
+
+  tbody tr:last-child {
+    display: none;
+  }
+}
+
