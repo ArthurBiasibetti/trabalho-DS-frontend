@@ -1,7 +1,9 @@
+@use 'styles';
+
 .App {
   display: flex;
   flex-direction: column;
- width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
   place-content: center;
@@ -39,7 +41,7 @@
   cursor: pointer;
 
   &.current {
-    color: #37B477;
+    color: styles.$color-primary;
     font-weight: bold;
   }
 }

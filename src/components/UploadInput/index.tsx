@@ -46,7 +46,7 @@ export const UploadInput: React.FC<UploadInputProps> = ({onChange , ...props}) =
           accept='.csv'
           onChange={(event) => event.target?.files && onChangeHandle(event.target.files)}
           className={style['input_file']}/>
-        <span className={style['warning_label']}> {inputRef.current?.files ? inputRef.current.files[0]?.name : 'Enviar arquivo .csv'} </span>
+        <span className={style['warning_label']}> {inputRef?.current?.files && inputRef.current.files[0]?.name || 'Enviar arquivo .csv'} </span>
       </div>
     </label>
   )
