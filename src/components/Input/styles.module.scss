@@ -1,0 +1,15 @@
+@use '../../styles';
+
+.input {
+  border: none;
+  height: 40px;
+  padding: 0px 8px;
+  border-radius: 4px;
+
+  box-shadow: rgba(styles.$color-secondary, 0.05) 0px 6px 24px 0px,
+    rgba(styles.$color-secondary, 0.08) 0px 0px 0px 1px;
+
+  &:focus {
+    outline: 2px solid styles.$color-primary;
+  }
+}

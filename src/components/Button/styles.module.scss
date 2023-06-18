@@ -1,0 +1,33 @@
+@use '../../styles';
+
+.button {
+  border: none;
+  border-radius: 4px;
+  height: 32px;
+  padding: 0 16px;
+
+  font-weight: bold;
+  font-size: 1rem;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &.primary {
+    background-color: styles.$color-primary;
+    color: #fff;
+  }
+
+  &.secondary {
+    background-color: styles.$color-secondary-light;
+    color: #fff;
+  }
+}
