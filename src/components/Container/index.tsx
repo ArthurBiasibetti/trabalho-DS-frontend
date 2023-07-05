@@ -9,6 +9,13 @@ export const Container: React.FC<PropsWithChildren<ContainerProps>> = ({
   className,
 }) => {
   return (
-    <div className={`${styles.container} ${className || ''}`}>{children}</div>
+    <div
+      className={`${styles.container} ${className || ''}`}
+      onDrag={() => {
+        console.log('drag');
+      }}
+    >
+      {children}
+    </div>
   );
 };

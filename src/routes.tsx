@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { LoginPage, HomePage } from './pages';
+import { LoginPage, HomePage, CheckListPage } from './pages';
 
 export const routes = createBrowserRouter([
   {
@@ -9,5 +9,9 @@ export const routes = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/check-list',
+    element: <CheckListPage />,
   },
 ]);
