@@ -8,12 +8,22 @@ export const Container: React.FC<PropsWithChildren<ContainerProps>> = ({
   children,
   className,
 }) => {
+  let timeout: number = 0;
+
+  const handleMouseDown = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    timeout = setTimeout(() => {
+      console.log(event.target);
+      handleMouseDown(event);
+    }, 60);
+  };
+
   return (
     <div
       className={`${styles.container} ${className || ''}`}
-      onDrag={() => {
-        console.log('drag');
-      }}
+      onMouseDown={handleMouseDown}
+      onMouseUp={() => clearTimeout(timeout)}
     >
       {children}
     </div>
