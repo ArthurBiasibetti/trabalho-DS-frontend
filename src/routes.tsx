@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { LoginPage, HomePage, RoomPage, BarcodePage, InvListPage } from './pages';
+import { LoginPage, HomePage, RoomPage, InvListPage, ReadcodePage, InvItemPage } from './pages';
 
 export const routes = createBrowserRouter([
   {
@@ -15,11 +15,15 @@ export const routes = createBrowserRouter([
     element: <RoomPage />,
   },
   {
-    path: '/barcode',
-    element: <BarcodePage />,
+    path: '/readcode',
+    element: <ReadcodePage />,
   },
   {
     path: '/invlist',
     element: <InvListPage />,
+  },
+  {
+    path: '/invitem',
+    element: <InvItemPage />,
   }
 ]);

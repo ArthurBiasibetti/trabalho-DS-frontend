@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 import { Menu } from '../../components/Menu';
 import { Button } from '../../components/Button';
 
-export const BarcodePage: React.FC = () => {
+export const InvItemPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -29,23 +29,28 @@ export const BarcodePage: React.FC = () => {
       </div>
 
       <div className={styles['subtiltle-page']}>
-        <p>Buscar Patrimônio</p>
+        <p>Item Patrimônio</p>
       </div>
       
     
     <div className={styles['inventories-content']}>
        <div className={styles['sections']}>
-          <div className={styles['actions']}>
-              <Button color="primary">Leitura por Câmera</Button>
+          <div className={styles['description']}>
+              <div className={styles['label']}>
+                <p>Código Inventário</p>
+                <p>---------</p>
+              </div>
+              <div className={styles['label']}>
+                <p>Descrição/Nome</p>
+                <p>-------</p>
+              </div>
           </div>
-
-          <p>OU</p>
 
           <div className={styles['actions']}>
                 <form action="">
-                  <label htmlFor="">Informe o código</label>
+                  <label htmlFor="">Observações</label>
                   <input type="text" name="inventories-code" id="inventories-code" />
-                  <Button color="primary"> Selecionar </Button>
+                  <Button color="primary"> Enviar </Button>
                 </form>
           </div>
       </div>

@@ -11,6 +11,7 @@ export const Menu: React.FC<MenuProps> = () => {
                 <li className={`$${styles['menu-item']}`}> <Link to="/login"> Login</Link> </li>
                 <li className={`$${styles['menu-item']}`}> <Link to="/"> Carregar CSV</Link> </li>
                 <li className={`$${styles['menu-item']}`}> <Link to="/room"> Selecionar Sala </Link> </li>
+                <li className={`$${styles['menu-item']}`}> <Link to="/readcode"> Buscar Patrimônio</Link> </li>
                 <li className={`$${styles['menu-item']}`}> <Link to="/invlist"> Lista Inventário</Link> </li>
                 <li className={`$${styles['menu-item']}`}>Logout</li>
             </ul>
