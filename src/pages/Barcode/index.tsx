@@ -4,14 +4,12 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { Container } from '../../components/Container';
 
-import { EmptyInventories } from './templates/emptyInventories';
-
 import styles from './styles.module.scss';
 import { Menu } from '../../components/Menu';
+import { Button } from '../../components/Button';
 
-export const HomePage: React.FC = () => {
+export const BarcodePage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [inventories, setInventories] = useState<{ name: string }[]>([]);
 
   return (
     <Container className={styles['home-page-container']}>
@@ -29,9 +27,30 @@ export const HomePage: React.FC = () => {
           />
         </div>
       </div>
-      <div className={styles['inventories-content']}>
-        {inventories.length <= 0 ? <EmptyInventories /> : null}
+
+      <div className={styles['subtiltle-page']}>
+        <p>Buscar Patrimônio</p>
       </div>
+      
+    
+    <div className={styles['inventories-content']}>
+       <div className={styles['sections']}>
+          <div className={styles['actions']}>
+              <Button color="primary">Leitura por Câmera</Button>
+          </div>
+
+          <p>OU</p>
+
+          <div className={styles['actions']}>
+                <form action="">
+                  <label htmlFor="">Informe o código</label>
+                  <input type="text" name="inventories-code" id="inventories-code" />
+                  <Button color="primary"> Selecionar </Button>
+                </form>
+          </div>
+      </div>
+    </div>
+
     </Container>
   );
 };

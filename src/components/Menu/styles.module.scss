@@ -1,0 +1,33 @@
+@use '../../styles';
+
+.menu {
+    margin-top: 8px;
+}
+
+.menu a {
+    background-color: #FFF;
+    text-decoration: none;
+    transition: background-color 1s;
+    color: #000;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    background-color: #3bbf74b1;
+    color: #F2F2F2;
+}
+
+.menu-item {
+    margin: 10px;
+    font-size: 20px;
+}
+
+ul {
+    list-style:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: rgb(79, 183, 134);
+}

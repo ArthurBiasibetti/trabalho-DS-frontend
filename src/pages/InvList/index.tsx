@@ -4,14 +4,12 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { Container } from '../../components/Container';
 
-import { EmptyInventories } from './templates/emptyInventories';
-
 import styles from './styles.module.scss';
 import { Menu } from '../../components/Menu';
+import { Button } from '../../components/Button';
 
-export const HomePage: React.FC = () => {
+export const InvListPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [inventories, setInventories] = useState<{ name: string }[]>([]);
 
   return (
     <Container className={styles['home-page-container']}>
@@ -29,9 +27,15 @@ export const HomePage: React.FC = () => {
           />
         </div>
       </div>
-      <div className={styles['inventories-content']}>
-        {inventories.length <= 0 ? <EmptyInventories /> : null}
+
+      <div className={styles['subtiltle-page']}>
+        <p>Lista Inventário</p>
       </div>
+      
+  
+      <div className={styles['inventories-content']}>
+      </div>
+
     </Container>
   );
 };
