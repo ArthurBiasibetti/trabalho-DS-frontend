@@ -1,5 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { LoginPage, HomePage, CheckListPage } from './pages';
+import {
+  LoginPage,
+  HomePage,
+  RoomPage,
+  InvListPage,
+  ReadcodePage,
+  InvItemPage,
+} from './pages';
 
 export const routes = createBrowserRouter([
   {
@@ -11,7 +18,19 @@ export const routes = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/check-list',
-    element: <CheckListPage />,
+    path: '/room',
+    element: <RoomPage />,
+  },
+  {
+    path: '/readcode',
+    element: <ReadcodePage />,
+  },
+  {
+    path: '/invlist',
+    element: <InvListPage />,
+  },
+  {
+    path: '/invitem',
+    element: <InvItemPage />,
   },
 ]);
