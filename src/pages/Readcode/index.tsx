@@ -9,8 +9,6 @@ import { Menu } from '../../components/Menu';
 import { Button } from '../../components/Button';
 
 export const ReadcodePage: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <Container className={styles['home-page-container']}>
       <Menu />

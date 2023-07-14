@@ -10,7 +10,6 @@ import styles from './styles.module.scss';
 import { Menu } from '../../components/Menu';
 
 export const HomePage: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [inventories, setInventories] = useState<{ name: string }[]>([]);
 
   return (
