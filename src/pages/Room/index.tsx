@@ -19,12 +19,6 @@ export const RoomPage: React.FC = () => {
       >
         <div>  
           <Menu />
-          <FontAwesomeIcon
-            icon={faChevronDown}
-            className={`${styles['bars-icon']}`}
-            tabIndex={0}
-            onClick={() => setIsOpen((oldState) => !oldState)}
-          />
         </div>
       </div>
 
