@@ -78,12 +78,9 @@
   }
 }
 
-
 .inventories-content {
   display: flex;
   flex-direction: column;
-  place-items: center;
-  justify-content: center;
   align-items: center;
 
   height: 100%;
@@ -104,19 +101,19 @@
       color: styles.$color-secondary;
       text-align: center;
     }
-    
+
     .actions {
       display: flex;
       justify-content: space-around;
       flex-direction: row;
       gap: 24px;
-  
+
       button {
         margin-top: 10px;
         height: 40px;
       }
     }
-  
+
     .form-invcod {
       display: flex;
       flex-direction: column;
@@ -134,7 +131,6 @@
         font-size: 1.4rem;
         color: styles.$color-secondary;
         text-align: center;
-
       }
 
       input {
@@ -143,6 +139,4 @@
       }
     }
   }
-
-
 }
