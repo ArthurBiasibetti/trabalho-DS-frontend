@@ -13,38 +13,33 @@ export const ReadcodePage: React.FC = () => {
 
   return (
     <Container className={styles['home-page-container']}>
-      <div
-        className={`${styles['header']} ${isOpen ? styles['open'] : ''}`}
-        tabIndex={0}
-      >
-        <div>  
-          <Menu />
-        </div>
-      </div>
+      <Menu />
 
       <div className={styles['subtiltle-page']}>
         <p>Buscar Patrimônio</p>
       </div>
-      
-    
-    <div className={styles['inventories-content']}>
-       <div className={styles['sections']}>
+
+      <div className={styles['inventories-content']}>
+        <div className={styles['sections']}>
           <div className={styles['actions']}>
-              <Button color="primary">Leitura por Câmera</Button>
+            <Button color="primary">Leitura por Câmera</Button>
           </div>
 
           <p>OU</p>
 
           <div className={styles['actions']}>
-                <form action="">
-                  <label htmlFor="">Informe o código</label>
-                  <input type="text" name="inventories-code" id="inventories-code" />
-                  <Button color="primary"> Selecionar </Button>
-                </form>
+            <form action="">
+              <label htmlFor="">Informe o código</label>
+              <input
+                type="text"
+                name="inventories-code"
+                id="inventories-code"
+              />
+              <Button color="primary"> Selecionar </Button>
+            </form>
           </div>
+        </div>
       </div>
-    </div>
-
     </Container>
   );
 };

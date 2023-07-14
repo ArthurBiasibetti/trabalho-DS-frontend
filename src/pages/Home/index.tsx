@@ -15,14 +15,8 @@ export const HomePage: React.FC = () => {
 
   return (
     <Container className={styles['home-page-container']}>
-      <div
-        className={`${styles['header']} ${isOpen ? styles['open'] : ''}`}
-        tabIndex={0}
-      >
-        <div>  
-          <Menu />
-        </div>
-      </div>
+      <Menu />
+
       <div className={styles['inventories-content']}>
         {inventories.length <= 0 ? <EmptyInventories /> : null}
       </div>

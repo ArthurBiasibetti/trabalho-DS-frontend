@@ -13,23 +13,13 @@ export const InvListPage: React.FC = () => {
 
   return (
     <Container className={styles['home-page-container']}>
-      <div
-        className={`${styles['header']} ${isOpen ? styles['open'] : ''}`}
-        tabIndex={0}
-      >
-        <div>  
-          <Menu />
-        </div>
-      </div>
+      <Menu />
 
       <div className={styles['subtiltle-page']}>
         <p>Lista Inventário</p>
       </div>
-      
-  
-      <div className={styles['inventories-content']}>
-      </div>
 
+      <div className={styles['inventories-content']}></div>
     </Container>
   );
 };
