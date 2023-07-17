@@ -26,7 +26,7 @@ export const ReadcodePage: React.FC = () => {
           <p>OU</p>
 
           <div className={styles['actions']}>
-            <form action="">
+            <form action="" onSubmit={(e) => e.preventDefault()}>
               <label htmlFor="">Informe o código</label>
               <input
                 type="text"
