@@ -6,6 +6,39 @@
   }
 }
 
+.upload-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+
+  margin: auto;
+
+  .upload {
+    height: 300px;
+  }
+
+  .close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+
+    position: absolute;
+    top: -48px;
+    right: 16px;
+
+    border-radius: 100%;
+    box-shadow: rgba(styles.$color-secondary, 0.16) 0px 3px 3px,
+      rgba(styles.$color-secondary, 0.23) 0px 1px 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #efefef;
+    }
+  }
+}
+
 .header {
   height: 48px;
   width: 100%;
@@ -66,6 +99,9 @@
 
 .inventories-content {
   margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   height: 100%;
   flex-shrink: 1;

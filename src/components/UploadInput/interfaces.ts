@@ -1,3 +1,4 @@
 export interface UploadInputProps {
-  onChange: (newFile: File) => void
+  onChange: (newFile: File) => void;
+  className: string;
 }
