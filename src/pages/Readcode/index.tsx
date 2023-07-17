@@ -26,7 +26,7 @@ export const ReadcodePage: React.FC = () => {
     if (document.getElementById('scanner')) {
       let html5QrcodeScanner = new Html5QrcodeScanner(
         'scanner',
-        { fps: 10, qrbox: { width: 250, height: 250 } },
+        { fps: 10, qrbox: 250 },
         /* verbose= */ false
       );
 
@@ -40,7 +40,7 @@ export const ReadcodePage: React.FC = () => {
         <>
           <Menu />
 
-          <div className={styles['subtiltle-page']}>
+          <div className={styles['subtitle-page']}>
             <p>Buscar Patrimônio</p>
           </div>
 
