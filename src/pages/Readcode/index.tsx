@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { Container } from '../../components/Container';
 
-import styles from './styles.module.scss';
-import { Menu } from '../../components/Menu';
 import { Button } from '../../components/Button';
+import styles from './styles.module.scss';
 
 import { Html5QrcodeScanner } from 'html5-qrcode';
 
 export const ReadcodePage: React.FC = () => {
   const [isReadingCode, setIsReadingCode] = useState(false);
-  const [codigosScanneados, setCodigosScanneados] = useState<string[]>([])
+  const [codigosScanneados, setCodigosScanneados] = useState<string[]>([]);
 
   function onScanSuccess(decodedText: string, decodedResult: any) {
     // handle the scanned code as you like, for example:
@@ -39,8 +38,6 @@ export const ReadcodePage: React.FC = () => {
     <Container className={styles['home-page-container']}>
       {!isReadingCode ? (
         <>
-          <Menu />
-
           <div className={styles['subtitle-page']}>
             <p>Buscar Patrimônio</p>
           </div>

@@ -1,93 +1,35 @@
 @use '../../styles';
 
-.home-page-container {
-  @supports not (position: sticky) {
-    padding-top: 48px;
-  }
-}
-
-.header {
-  height: 48px;
-  width: 100%;
-  padding: 0 24px;
-
-  transition: height 0.3s;
-
-  @supports not (position: sticky) {
-    position: absolute;
-  }
-
-  position: sticky;
-  top: 0;
-  left: 0;
-
-  background-color: #fff;
-  box-shadow: rgba(styles.$color-secondary, 0.16) 0px 3px 3px,
-    rgba(styles.$color-secondary, 0.23) 0px 1px 6px;
-
-  & > div {
-    height: 100%;
-
-    position: relative;
-  }
-
-  &.open {
-    height: calc(100% - 100px);
-    position: fixed;
-
-    z-index: 10;
-
-    .bars-icon {
-      rotate: 180deg;
-    }
-  }
-
-  .bars-icon {
-    height: 24px;
-    width: 24px;
-    padding: 8px;
-    border-radius: 100%;
-
-    transition: rotate 0.3s;
-
-    position: absolute;
-    left: calc(50% - 20px);
-
-    top: calc(100% - 24px);
-
-    background-color: #fff;
-    box-shadow: rgba(styles.$color-secondary, 0.16) 0px 3px 3px,
-      rgba(styles.$color-secondary, 0.23) 0px 1px 6px;
-    color: styles.$color-secondary;
-
-    cursor: pointer;
-  }
-}
-
-.subtiltle-page {
+.subtitle-page {
   display: flex;
   flex-direction: column;
   place-items: center;
   margin-top: 35px;
 
-  p {
-    font-weight: bold;
-    font-size: 2rem;
-    color: styles.$color-secondary;
-    text-align: center;
-  }
+  font-weight: bold;
+  font-size: 2rem;
+  color: styles.$color-secondary;
+  text-align: center;
 }
 
-.inventories-content {
+.button-iniciar-inventario {
+  width: 100%;
+  max-width: 200px;
+
+  margin: auto;
+
+  margin-bottom: 16px;
+}
+
+.rooms-content {
   display: flex;
   flex-direction: column;
   place-items: center;
-  justify-content: flex-start;
-  height: 100%;
+  flex-grow: 1;
 
-  margin-top: 32px;
-  height: 100%;
-  flex-shrink: 1;
+  gap: 24px;
+
+  padding-bottom: 48px;
 
   p {
     font-weight: bold;
@@ -95,12 +37,11 @@
     color: styles.$color-secondary;
     text-align: center;
   }
-  
-  .actions {
+
+  .action {
     display: flex;
-    justify-content: space-around;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
 
     gap: 24px;
 
@@ -108,7 +49,9 @@
       margin-top: 24px;
       height: 40px;
     }
+
+    .select-style {
+      width: 200px;
+    }
   }
-
-
 }

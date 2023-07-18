@@ -12,8 +12,6 @@ import { Table } from '../../components/Table';
 export const InvListPage: React.FC = () => {
   return (
     <Container className={styles['home-page-container']}>
-      <Menu />
-
       <div className={styles['subtiltle-page']}>
         <p>Lista Inventário</p>
       </div>

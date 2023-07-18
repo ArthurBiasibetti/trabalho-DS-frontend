@@ -11,71 +11,60 @@ import { Menu } from '../../components/Menu';
 import { UploadInput } from '../../components/UploadInput';
 import HttpClient from '../../config/axios';
 import { CircleLoader, RingLoader } from 'react-spinners';
+import { Loader } from '../../components/Loader';
 
 const override: CSSProperties = {
-  position: "absolute",
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   height: '10rem',
   width: '10rem',
-  zIndex: '999'
+  zIndex: '999',
 };
 
 const blackWindow: CSSProperties = {
-  position: "absolute",
+  position: 'absolute',
   top: '0%',
   left: '0%',
   // transform: 'translate(-50%, -50%)',
   width: '100vw',
   height: '100vh',
   background: 'hsla(0, 0%, 0%, 0.493)',
-  zIndex: '998'
-}
-
+  zIndex: '998',
+};
 
 export const HomePage: React.FC = () => {
   const [inventories, setInventories] = useState<{ name: string }[]>([]);
   const [isAddingInventory, setIsAddingInventory] = useState(false);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   let malditoTimer: number;
-  const uploadFile = async (file: File) =>
-  {
-    console.log('oi')
-    if (!file)
-    {
+  const uploadFile = async (file: File) => {
+    console.log('oi');
+    if (!file) {
       // console.log(file)
-      return
+      return;
     }
-    console.log(file)
+    console.log(file);
     const formData = new FormData();
-    formData.append('file', file)
+    formData.append('file', file);
     const result = await HttpClient.api.post('/core/importar-csv', formData);
-    malditoTimer = setInterval(async () =>
-    {
-      const jaTaPronto = await HttpClient.api.get(`/core/ta-pronto?idSolicitacao=${result.data.message}`)
-      if (jaTaPronto.data.message)
-      {
-        clearInterval(malditoTimer)
-        setIsLoading(false)
+    malditoTimer = setInterval(async () => {
+      const jaTaPronto = await HttpClient.api.get(
+        `/core/ta-pronto?idSolicitacao=${result.data.message}`
+      );
+      if (jaTaPronto.data.message) {
+        clearInterval(malditoTimer);
+        setIsLoading(false);
       }
-    }, 15000)
-    setIsLoading(true)
-  }
+    }, 15000);
+    setIsLoading(true);
+  };
 
   return (
     <Container className={styles['home-page-container']}>
-      <Menu />
-      <RingLoader
-        color={'white'}
-        loading={isLoading}
-        cssOverride={override}
-        size={250}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
-      {isLoading && <div style={blackWindow}></div>}
+      <Loader isLoading={isLoading} />
       <div className={styles['inventories-content']}>
         {inventories.length <= 0 && !isAddingInventory ? (
           <EmptyInventories onClick={() => setIsAddingInventory(true)} />
@@ -87,7 +76,11 @@ export const HomePage: React.FC = () => {
             >
               <FontAwesomeIcon icon={faClose} />
             </div>
-              <UploadInput isLoading={isLoading} onChange={uploadFile} className={styles['upload']} />
+            <UploadInput
+              isLoading={isLoading}
+              onChange={uploadFile}
+              className={styles['upload']}
+            />
           </div>
         )}
       </div>
