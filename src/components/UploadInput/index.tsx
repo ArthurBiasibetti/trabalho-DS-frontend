@@ -6,6 +6,7 @@ import style from './styles.module.scss';
 export const UploadInput: React.FC<UploadInputProps> = ({
   onChange,
   className,
+  isLoading,
   ...props
 }) => {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -33,6 +34,8 @@ export const UploadInput: React.FC<UploadInputProps> = ({
 
   const onChangeHandle = (fileList: FileList) => {
     onChange(fileList[0]);
+    if (inputRef.current)
+      inputRef.current.files = null
   };
 
   return (

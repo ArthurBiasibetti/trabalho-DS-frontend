@@ -10,6 +10,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 
 export const ReadcodePage: React.FC = () => {
   const [isReadingCode, setIsReadingCode] = useState(false);
+  const [codigosScanneados, setCodigosScanneados] = useState<string[]>([])
 
   function onScanSuccess(decodedText: string, decodedResult: any) {
     // handle the scanned code as you like, for example:
@@ -19,7 +20,7 @@ export const ReadcodePage: React.FC = () => {
   function onScanFailure(error: unknown) {
     // handle scan failure, usually better to ignore and keep scanning.
     // for example:
-    console.warn(`Code scan error = ${error}`);
+    // console.warn(`Code scan error = ${error}`);
   }
 
   useEffect(() => {

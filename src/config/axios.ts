@@ -6,7 +6,7 @@ const defaultHeaders = {
 };
 
 const axiosConfig = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}`,
+  baseURL: `${import.meta.env.VITE_API_URL}/inventario`,
   timeout: 30000,
   headers: defaultHeaders,
 });
