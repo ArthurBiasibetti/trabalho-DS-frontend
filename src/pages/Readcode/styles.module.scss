@@ -78,12 +78,24 @@
   }
 }
 
+.table-wrapper {
+  height: 100%;
+  overflow: auto;
+  width: 0%;
+
+  transition: width 1s;
+
+  &.isOpen {
+    width: 80%;
+  }
+}
+
 .inventories-content {
   display: flex;
-  flex-direction: column;
-  place-items: center;
+
   justify-content: center;
-  align-items: center;
+
+  overflow: hidden;
 
   height: 100%;
 
@@ -95,7 +107,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    transition: width 1s;
+
+    overflow-y: auto;
+
+    padding: 20px 0;
+
+    height: 100%;
     gap: 48px;
+
+    &.isClose {
+      width: 0%;
+    }
 
     p {
       font-weight: bold;
@@ -107,38 +131,8 @@
     .actions {
       display: flex;
       justify-content: space-around;
-      flex-direction: row;
-      gap: 24px;
-
-      button {
-        margin-top: 10px;
-        height: 40px;
-      }
-    }
-
-    .form-invcod {
-      display: flex;
       flex-direction: column;
-      align-items: baseline;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-
-      label {
-        font-weight: bold;
-        font-size: 1.4rem;
-        color: styles.$color-secondary;
-        text-align: center;
-      }
-
-      input {
-        height: 35px;
-        width: 250px;
-      }
+      gap: 8px;
     }
   }
 
@@ -149,4 +143,9 @@
     height: 100%;
     width: 100%;
   }
+}
+
+.open-close {
+  margin-top: 10px;
+  height: 40px;
 }

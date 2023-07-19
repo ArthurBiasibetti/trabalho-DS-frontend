@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 import { Container } from '../../components/Container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { Button } from '../../components/Button';
 import styles from './styles.module.scss';
 
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Table } from '../../components/Table';
+import HttpClient from '../../config/axios';
+import { Patrimonio } from '../../interfaces/patrimonio';
+
+const defaultTableData: Patrimonio[] = [{ numero: 0, descricao: '' }];
 
 export const ReadcodePage: React.FC = () => {
   const [isReadingCode, setIsReadingCode] = useState(false);
+  const [dataTable, setDataTable] = useState(defaultTableData);
+  const [isTableOpen, setIsTableOpen] = useState(false);
   const [codigosScanneados, setCodigosScanneados] = useState<string[]>([]);
 
   const { idSala } = useParams();
@@ -41,50 +50,67 @@ export const ReadcodePage: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const pegarPatrimonio = async () => {
+      try {
+        const response = await HttpClient.api.get<{ message: Patrimonio[] }>(
+          `/core/retorna-patrimonio-sala/${idSala}`
+        );
+
+        console.log(response.data.message);
+
+        response.data.message.length > 0 && setDataTable(response.data.message);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    pegarPatrimonio();
+  }, []);
+
   return (
     <Container className={styles['home-page-container']}>
-      {!isReadingCode ? (
-        <>
-          <div className={styles['subtitle-page']}>
-            <p>Buscar Patrimônio</p>
-          </div>
+      <div className={styles['subtitle-page']}>
+        <p>Buscar Patrimônio</p>
+        <Button
+          color="primary"
+          className={styles['open-close']}
+          onClick={() => setIsTableOpen((oldState) => !oldState)}
+        >
+          {isTableOpen ? 'Fechar Tabela' : 'Abrir Tabela'}
+        </Button>
+      </div>
 
-          <div className={styles['inventories-content']}>
-            <div className={styles['sections']}>
-              <div className={styles['actions']}>
-                <Button color="primary" onClick={() => setIsReadingCode(true)}>
-                  Leitura por Câmera
-                </Button>
-              </div>
-
-              <p>OU</p>
-
-              <div className={styles['actions']}>
-                <form action="" onSubmit={(e) => e.preventDefault()}>
-                  <label htmlFor="">Informe o código</label>
-                  <input
-                    type="text"
-                    name="inventories-code"
-                    id="inventories-code"
-                  />
-                  <Button color="primary"> Selecionar </Button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </>
-      ) : (
+      <div className={styles['inventories-content']}>
         <div
-          id="scanner"
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}
-        ></div>
-      )}
+          className={`${styles['table-wrapper']} ${
+            isTableOpen ? styles['isOpen'] : ''
+          }`}
+        >
+          <Table data={dataTable} />
+        </div>
+        <div
+          className={`${styles['sections']} ${
+            isTableOpen ? styles['isClose'] : ''
+          }`}
+        >
+          <div
+            id="scanner"
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          />
+          <div className={styles['actions']}>
+            <label htmlFor="">Informe o código do patrimonio</label>
+            <input type="text" name="inventories-code" id="inventories-code" />
+            <Button color="primary"> Selecionar </Button>
+          </div>
+        </div>
+      </div>
     </Container>
   );
 };
