@@ -119,7 +119,7 @@ export const HomePage: React.FC = () => {
     };
 
     pegaInventario();
-  }, []);
+  }, [servidor]);
 
   return (
     <Container className={styles['home-page-container']}>

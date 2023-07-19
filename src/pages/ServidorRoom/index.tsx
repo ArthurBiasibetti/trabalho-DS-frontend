@@ -22,7 +22,9 @@ export const ServidorRoomPage: React.FC = () => {
   );
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
+    if (servidor.cargo.id == 0) navigate('/admin/room')
     const buscarSalas = async () => {
       try {
         const response = await HttpClient.api.get<{ message: Sala[] }>(

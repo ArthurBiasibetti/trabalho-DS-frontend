@@ -7,7 +7,8 @@ import myImage from '../../img/ifsul-logo.png';
 import styles from './styles.module.scss';
 import { Servidor } from '../../interfaces/servidor';
 
-export const Menu: React.FC<MenuProps> = () => {
+export const Menu: React.FC<MenuProps> = () =>
+{
   const [isOpen, setIsOpen] = useState(false);
 
   const servidor: Servidor = JSON.parse(
@@ -49,18 +50,23 @@ export const Menu: React.FC<MenuProps> = () => {
                       : '../servidor/room'
                   }
                 >
-                  Selecionar Responsáveis das salas
+                  {servidor.cargo.id === 0 ? 'Selecionar Responsáveis das salas' : 'Selecionar sala'}
                 </Link>
               </li>
-              <li className={`${styles['menu-item']}`}>
-                <Link to="/readcode"> Buscar Patrimônio</Link>
-              </li>
-              <li className={`${styles['menu-item']}`}>
-                <Link to="/invlist"> Lista Inventário</Link>
-              </li>
+              {servidor.cargo.id != 0 &&
+                <>
+                  < li className={`${styles['menu-item']}`}>
+                    <Link to="/readcode"> Buscar Patrimônio</Link>
+                  </li>
+                  <li className={`${styles['menu-item']}`}>
+                    <Link to="/invlist"> Lista Inventário</Link>
+                  </li>
+                </>
+              }
               <li
                 className={`${styles['menu-item']}`}
-                onClick={() => {
+                onClick={() =>
+                {
                   localStorage.removeItem('@DS/inventario');
                   navigate('/login');
                 }}

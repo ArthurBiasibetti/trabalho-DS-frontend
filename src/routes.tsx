@@ -7,6 +7,7 @@ import {
   ReadcodePage,
   InvItemPage,
 } from './pages';
+import { LoginSecreto } from './pages/LoginAdmin';
 import { ServidorRoomPage } from './pages/ServidorRoom';
 
 export const routes = createBrowserRouter([
@@ -37,5 +38,9 @@ export const routes = createBrowserRouter([
   {
     path: '/invitem',
     element: <InvItemPage />,
+  },
+  {
+    path: '/login/secreto/admin',
+    element: <LoginSecreto />,
   },
 ]);

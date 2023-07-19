@@ -20,7 +20,13 @@ export const AdminRoomPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const servidor: Servidor = JSON.parse(
+    localStorage.getItem('@DS/inventario')!
+  );
+
+  useEffect(() =>
+  {
+    if (servidor.cargo.id !== 0) navigate('/servidor/room')
     const buscarServidores = async () => {
       try {
         const response = await HttpClient.api.get<{ message: Servidor[] }>(
