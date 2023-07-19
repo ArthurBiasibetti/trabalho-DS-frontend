@@ -13,7 +13,7 @@ import { Servidor } from '../../interfaces/servidor';
 import { Sala } from '../../interfaces/salas';
 import { Loader } from '../../components/Loader';
 
-export const RoomPage: React.FC = () => {
+export const AdminRoomPage: React.FC = () => {
   const [servidores, setServidores] = useState<Servidor[]>([]);
   const [salas, setSalas] = useState<Sala[]>([]);
   const [opcoes, setOpcoes] = useState<{ label: string; value: number }[]>([]);

@@ -109,7 +109,9 @@ export const HomePage: React.FC = () => {
           response.data.message.length > 0 ||
           response2.data.message.length > 0
         )
-          navigate('/room');
+          servidor.cargo.id === 0
+            ? navigate('../admin/room')
+            : navigate('../servidor/room');
       } catch (e) {
         console.error(e);
         setIsLoading(false);
@@ -125,9 +127,7 @@ export const HomePage: React.FC = () => {
       <div className={styles['inventories-content']}>
         {inventarios.length <= 0 && !isLoading ? (
           <EmptyInventories onClick={() => setIsAddingInventory(true)} />
-        ) : (
-          ''
-        )}
+        ) : null}
         {isAddingInventory && renderUpload()}
       </div>
     </Container>

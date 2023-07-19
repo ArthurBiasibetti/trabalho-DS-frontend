@@ -36,17 +36,21 @@ export const Menu: React.FC<MenuProps> = () => {
               className={`${styles['logo-img']}`}
             />
             <ul>
-              {/* <li className={`${styles['menu-item']}`}>
-                <Link to="/login"> Login</Link>
-              </li> */}
-
               {servidor.cargo.id == 0 && (
                 <li className={`${styles['menu-item']}`}>
                   <Link to="/"> Importar CSV</Link>
                 </li>
               )}
               <li className={`${styles['menu-item']}`}>
-                <Link to="/room"> Selecionar Responsáveis das salas </Link>
+                <Link
+                  to={
+                    servidor.cargo.id === 0
+                      ? '../admin/room'
+                      : '../servidor/room'
+                  }
+                >
+                  Selecionar Responsáveis das salas
+                </Link>
               </li>
               <li className={`${styles['menu-item']}`}>
                 <Link to="/readcode"> Buscar Patrimônio</Link>

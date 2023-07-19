@@ -2,11 +2,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {
   LoginPage,
   HomePage,
-  RoomPage,
+  AdminRoomPage,
   InvListPage,
   ReadcodePage,
   InvItemPage,
 } from './pages';
+import { ServidorRoomPage } from './pages/ServidorRoom';
 
 export const routes = createBrowserRouter([
   {
@@ -18,8 +19,12 @@ export const routes = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/room',
-    element: <RoomPage />,
+    path: 'admin/room',
+    element: <AdminRoomPage />,
+  },
+  {
+    path: 'servidor/room',
+    element: <ServidorRoomPage />,
   },
   {
     path: '/readcode',

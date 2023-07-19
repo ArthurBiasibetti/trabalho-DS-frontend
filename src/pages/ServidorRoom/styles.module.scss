@@ -1,0 +1,62 @@
+@use '../../styles';
+
+.subtitle-page {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  margin-top: 35px;
+
+  font-weight: bold;
+  font-size: 2rem;
+  color: styles.$color-secondary;
+  text-align: center;
+}
+
+.button-iniciar-inventario {
+  width: 100%;
+  max-width: 200px;
+  height: 3rem;
+
+  margin: auto;
+
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rooms-content {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  flex-grow: 1;
+
+  gap: 24px;
+
+  padding: 24px 0;
+
+  p {
+    font-weight: bold;
+    font-size: 1rem;
+    color: styles.$color-secondary;
+    text-align: left;
+  }
+
+  .room {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 90%;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    padding-bottom: 12px;
+    text-align: left;
+
+    button {
+      margin-top: 24px;
+      height: 40px;
+    }
+
+    .select-style {
+      width: 200px;
+    }
+  }
+}
