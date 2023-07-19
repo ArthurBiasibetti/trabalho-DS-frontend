@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { MenuProps } from './interfaces';
@@ -8,6 +8,8 @@ import styles from './styles.module.scss';
 
 export const Menu: React.FC<MenuProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <div
@@ -44,7 +46,15 @@ export const Menu: React.FC<MenuProps> = () => {
               <li className={`${styles['menu-item']}`}>
                 <Link to="/invlist"> Lista Inventário</Link>
               </li>
-              <li className={`${styles['menu-item']}`}>Logout</li>
+              <li
+                className={`${styles['menu-item']}`}
+                onClick={() => {
+                  localStorage.removeItem('@DS/inventario');
+                  navigate('/login');
+                }}
+              >
+                Logout
+              </li>
             </ul>
           </nav>
         )}

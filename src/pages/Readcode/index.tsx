@@ -6,6 +6,7 @@ import { Button } from '../../components/Button';
 import styles from './styles.module.scss';
 
 import { Html5QrcodeScanner } from 'html5-qrcode';
+import { useNavigate } from 'react-router-dom';
 
 export const ReadcodePage: React.FC = () => {
   const [isReadingCode, setIsReadingCode] = useState(false);
@@ -34,6 +35,13 @@ export const ReadcodePage: React.FC = () => {
     }
   }, [isReadingCode]);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('@DS/inventario')) {
+      navigate('/login');
+    }
+  }, []);
   return (
     <Container className={styles['home-page-container']}>
       {!isReadingCode ? (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
 
 import { Container } from '../../components/Container';
@@ -7,25 +7,74 @@ import { Menu } from '../../components/Menu';
 
 import styles from './styles.module.scss';
 import { Button } from '../../components/Button';
-
-const options = [
-  { value: '51', label: 'Ramiro' },
-  { value: '23', label: 'Hunder' },
-  { value: '32', label: 'Douglas' },
-  { value: '5', label: 'Arthur F' },
-  { value: '11', label: 'Arthur' },
-  { value: '7', label: 'Maitê' },
-  { value: '1', label: 'Guilherme' },
-  { value: '4', label: 'Patricia' },
-  { value: '2', label: 'Virginia' },
-];
-
-const fakeRooms = [1, 2, 3, 4, 5, 6, 7];
+import { useNavigate } from 'react-router-dom';
+import HttpClient from '../../config/axios';
+import { Servidor } from '../../interfaces/servidor';
+import { Sala } from '../../interfaces/salas';
 
 export const RoomPage: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<
-    SingleValue<{ label: string; value: string }>
-  >(options[2]);
+  const [servidores, setServidores] = useState<Servidor[]>([]);
+  const [salas, setSalas] = useState<Sala[]>([]);
+  const [opcoes, setOpcoes] = useState<{ label: string; value: number }[]>([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const buscarServidores = async () => {
+      try {
+        const response = await HttpClient.api.get<{ message: Servidor[] }>(
+          `/core/retornar-servidores`
+        );
+        setServidores(response.data.message);
+
+        const options = response.data.message.map((servidor) => {
+          return {
+            value: servidor.id,
+            label: servidor.nome,
+          };
+        });
+        setOpcoes(options);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    const buscarSalas = async () => {
+      try {
+        const response = await HttpClient.api.get<{ message: Sala[] }>(
+          `/core/retornar-salas-inventarios-pendentes`
+        );
+        console.log(response.data);
+        setSalas(response.data.message);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    buscarServidores();
+    buscarSalas();
+  }, []);
+
+  useEffect(() => {
+    if (!localStorage.getItem('@DS/inventario')) {
+      navigate('/login');
+    }
+  }, []);
+
+  const setResponsavelSala = async (sala: Sala, responsavelId: number) => {
+    try {
+      const response = await HttpClient.api.post<{ message: boolean }>(
+        `/core/set-responsavel-sala`,
+        {
+          espacoId: sala.espaco.id,
+          inventario: sala.inventarioId,
+          novoResponsavel: responsavelId,
+        }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Container>
@@ -39,14 +88,14 @@ export const RoomPage: React.FC = () => {
         Iniciar inventario
       </Button>
       <div className={styles['rooms-content']}>
-        {fakeRooms.map((number) => (
+        {salas.map((sala) => (
           <div className={styles['action']}>
-            <p>Sala {number}</p>
+            <p>{`${sala.espaco.id} ${sala.espaco.nome}`}</p>
             <Select
               className={styles['select-style']}
-              defaultValue={selectedOption}
-              onChange={(e) => setSelectedOption(e)}
-              options={options}
+              defaultValue={opcoes[0].value}
+              onChange={(e) => setResponsavelSala(sala, e as number)}
+              options={opcoes}
             />
           </div>
         ))}

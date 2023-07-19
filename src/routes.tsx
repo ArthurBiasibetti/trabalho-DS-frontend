@@ -1,5 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { LoginPage, HomePage, RoomPage, InvListPage, ReadcodePage, InvItemPage } from './pages';
+import {
+  LoginPage,
+  HomePage,
+  RoomPage,
+  InvListPage,
+  ReadcodePage,
+  InvItemPage,
+} from './pages';
 
 export const routes = createBrowserRouter([
   {
@@ -25,5 +32,5 @@ export const routes = createBrowserRouter([
   {
     path: '/invitem',
     element: <InvItemPage />,
-  }
+  },
 ]);
