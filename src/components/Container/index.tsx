@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export const Container: React.FC<PropsWithChildren<ContainerProps>> = ({
   children,
   className,
+  showMenu = true,
 }) => {
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ export const Container: React.FC<PropsWithChildren<ContainerProps>> = ({
 
   return (
     <div className={`${styles.container} ${className || ''}`}>
-      <Menu />
+      {showMenu && <Menu />}
       {children}
     </div>
   );

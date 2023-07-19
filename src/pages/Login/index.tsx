@@ -53,7 +53,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <Container className={styles['login-page']}>
+    <Container showMenu={false} className={styles['login-page']}>
       <div className={styles['login-wrapper']}>
         <div className={styles['login-form']}>
           <legend>Entrar</legend>

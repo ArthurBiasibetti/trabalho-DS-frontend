@@ -5,9 +5,14 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { MenuProps } from './interfaces';
 import myImage from '../../img/ifsul-logo.png';
 import styles from './styles.module.scss';
+import { Servidor } from '../../interfaces/servidor';
 
 export const Menu: React.FC<MenuProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const servidor: Servidor = JSON.parse(
+    localStorage.getItem('@DS/inventario')!
+  );
 
   const navigate = useNavigate();
 
@@ -31,14 +36,17 @@ export const Menu: React.FC<MenuProps> = () => {
               className={`${styles['logo-img']}`}
             />
             <ul>
-              <li className={`${styles['menu-item']}`}>
+              {/* <li className={`${styles['menu-item']}`}>
                 <Link to="/login"> Login</Link>
-              </li>
+              </li> */}
+
+              {servidor.cargo.id == 0 && (
+                <li className={`${styles['menu-item']}`}>
+                  <Link to="/"> Importar CSV</Link>
+                </li>
+              )}
               <li className={`${styles['menu-item']}`}>
-                <Link to="/"> Carregar CSV</Link>
-              </li>
-              <li className={`${styles['menu-item']}`}>
-                <Link to="/room"> Selecionar Sala </Link>
+                <Link to="/room"> Selecionar Responsáveis das salas </Link>
               </li>
               <li className={`${styles['menu-item']}`}>
                 <Link to="/readcode"> Buscar Patrimônio</Link>

@@ -9,4 +9,13 @@ export interface Sala {
     nome: string;
     createdAt: Date;
   };
+  responsavel: {
+    id: number;
+    nome: string;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+  inventario: {
+    status: number;
+  };
 }

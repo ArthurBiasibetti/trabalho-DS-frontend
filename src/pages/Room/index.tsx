@@ -11,11 +11,14 @@ import { useNavigate } from 'react-router-dom';
 import HttpClient from '../../config/axios';
 import { Servidor } from '../../interfaces/servidor';
 import { Sala } from '../../interfaces/salas';
+import { Loader } from '../../components/Loader';
 
 export const RoomPage: React.FC = () => {
   const [servidores, setServidores] = useState<Servidor[]>([]);
   const [salas, setSalas] = useState<Sala[]>([]);
   const [opcoes, setOpcoes] = useState<{ label: string; value: number }[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [mostrarBotaoIniciar, setMostrarBotaoIniciar] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,8 +47,8 @@ export const RoomPage: React.FC = () => {
         const response = await HttpClient.api.get<{ message: Sala[] }>(
           `/core/retornar-salas-inventarios-pendentes`
         );
-        console.log(response.data);
         setSalas(response.data.message);
+        setMostrarBotaoIniciar(response.data.message[0].inventario.status == 1);
       } catch (e) {
         console.log(e);
       }
@@ -76,25 +79,41 @@ export const RoomPage: React.FC = () => {
     }
   };
 
+  const iniciarInventario = async () => {
+    try {
+      const response = await HttpClient.api.post<{ message: boolean }>(
+        `/core/iniciar-inventario`
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <Container>
-      <p className={styles['subtitle-page']}>Selecione Sala</p>
-      <Button
-        color="primary"
-        type="button"
-        onClick={() => {}}
-        className={styles['button-iniciar-inventario']}
-      >
-        Iniciar inventario
-      </Button>
+      <Loader isLoading={isLoading} />
+      <p className={styles['subtitle-page']}>Selecione Responsavel da Sala</p>
+      {mostrarBotaoIniciar && (
+        <Button
+          color="primary"
+          type="button"
+          onClick={() => {
+            iniciarInventario(), setMostrarBotaoIniciar(false);
+          }}
+          className={styles['button-iniciar-inventario']}
+        >
+          Iniciar inventario
+        </Button>
+      )}
       <div className={styles['rooms-content']}>
         {salas.map((sala) => (
-          <div className={styles['action']}>
+          <div className={`${styles['room']} ${styles['rooms-list']}`}>
             <p>{`${sala.espaco.id} ${sala.espaco.nome}`}</p>
             <Select
-              className={styles['select-style']}
-              defaultValue={opcoes[0].value}
-              onChange={(e) => setResponsavelSala(sala, e as number)}
+              className={`${styles['select-style']} `}
+              defaultValue={opcoes.find((r) => r.value === sala.responsavel.id)}
+              onChange={(e) => setResponsavelSala(sala, e.value)}
               options={opcoes}
             />
           </div>

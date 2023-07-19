@@ -99,10 +99,17 @@ export const HomePage: React.FC = () => {
         const response = await HttpClient.api.get<{ message: Inventario[] }>(
           '/core/retornar-inventarios-pendentes'
         );
+        const response2 = await HttpClient.api.get<{ message: Inventario[] }>(
+          '/core/retornar-inventarios-iniciados'
+        );
 
-        setInventarios(response.data.message);
+        setInventarios([...response.data.message, ...response2.data.message]);
         setIsLoading(false);
-        if (response.data.message.length > 0) navigate('/room');
+        if (
+          response.data.message.length > 0 ||
+          response2.data.message.length > 0
+        )
+          navigate('/room');
       } catch (e) {
         console.error(e);
         setIsLoading(false);
