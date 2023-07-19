@@ -13,12 +13,13 @@ import { Sala } from '../../interfaces/salas';
 import { Loader } from '../../components/Loader';
 import styles from './styles.module.scss';
 
-const servidor: Servidor = JSON.parse(localStorage.getItem('@DS/inventario')!);
-
 export const ServidorRoomPage: React.FC = () => {
   const [salas, setSalas] = useState<Sala[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const servidor: Servidor = JSON.parse(
+    localStorage.getItem('@DS/inventario')!
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,9 +50,20 @@ export const ServidorRoomPage: React.FC = () => {
       <div className={styles['rooms-content']}>
         {salas.map((sala) => (
           <div className={`${styles['room']} ${styles['rooms-list']}`}>
-            <p>{`${sala.espaco.id} ${sala.espaco.nome}`}</p>
-            <Button type="button" color="primary">
-              SAlve
+            <div>
+              <p>{`${sala.espaco.id} ${sala.espaco.nome}`}</p>
+              <p
+                className={styles['estatiticas']}
+              >{`${sala.quantidadePatrimonios} / ${sala.patrimoniosLidos}`}</p>
+            </div>
+            <Button
+              type="button"
+              color="primary"
+              onClick={() => {
+                navigate(`../readcode/${sala.espacoId}`);
+              }}
+            >
+              Entrar na sala
             </Button>
           </div>
         ))}

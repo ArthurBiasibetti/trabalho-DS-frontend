@@ -6,21 +6,21 @@ import { Button } from '../../components/Button';
 import styles from './styles.module.scss';
 
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const ReadcodePage: React.FC = () => {
   const [isReadingCode, setIsReadingCode] = useState(false);
   const [codigosScanneados, setCodigosScanneados] = useState<string[]>([]);
 
+  const { idSala } = useParams();
+  const navigate = useNavigate();
+
   function onScanSuccess(decodedText: string, decodedResult: any) {
-    // handle the scanned code as you like, for example:
     console.log(`Code matched = ${decodedText}`, decodedResult);
   }
 
   function onScanFailure(error: unknown) {
-    // handle scan failure, usually better to ignore and keep scanning.
-    // for example:
-    // console.warn(`Code scan error = ${error}`);
+    console.warn(error);
   }
 
   useEffect(() => {
@@ -28,20 +28,19 @@ export const ReadcodePage: React.FC = () => {
       let html5QrcodeScanner = new Html5QrcodeScanner(
         'scanner',
         { fps: 10, qrbox: 250 },
-        /* verbose= */ false
+        false
       );
 
       html5QrcodeScanner.render(onScanSuccess, onScanFailure);
     }
   }, [isReadingCode]);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (!localStorage.getItem('@DS/inventario')) {
       navigate('/login');
     }
   }, []);
+
   return (
     <Container className={styles['home-page-container']}>
       {!isReadingCode ? (

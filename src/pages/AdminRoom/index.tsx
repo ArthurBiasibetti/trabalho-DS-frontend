@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Select, { SingleValue } from 'react-select';
+import Select from 'react-select';
 
 import { Container } from '../../components/Container';
 
-import { Menu } from '../../components/Menu';
-
-import styles from './styles.module.scss';
-import { Button } from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
-import HttpClient from '../../config/axios';
-import { Servidor } from '../../interfaces/servidor';
-import { Sala } from '../../interfaces/salas';
+import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
+import HttpClient from '../../config/axios';
+import { Sala } from '../../interfaces/salas';
+import { Servidor } from '../../interfaces/servidor';
+import styles from './styles.module.scss';
 
 export const AdminRoomPage: React.FC = () => {
   const [servidores, setServidores] = useState<Servidor[]>([]);

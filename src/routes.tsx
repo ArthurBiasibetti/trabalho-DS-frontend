@@ -27,7 +27,7 @@ export const routes = createBrowserRouter([
     element: <ServidorRoomPage />,
   },
   {
-    path: '/readcode',
+    path: '/readcode/:idSala',
     element: <ReadcodePage />,
   },
   {
