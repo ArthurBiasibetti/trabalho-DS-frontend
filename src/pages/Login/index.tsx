@@ -23,7 +23,6 @@ const options = [
 ];
 
 export const LoginPage: React.FC = () => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { register, handleSubmit } = useForm<LoginFormFields>();
   const [selectedOption, setSelectedOption] = useState<
     SingleValue<{ label: string; value: string }>

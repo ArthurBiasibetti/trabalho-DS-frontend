@@ -41,12 +41,9 @@ export const HomePage: React.FC = () => {
 
   let malditoTimer: number;
   const uploadFile = async (file: File) => {
-    console.log('oi');
     if (!file) {
-      // console.log(file)
       return;
     }
-    console.log(file);
     const formData = new FormData();
     formData.append('file', file);
     const result = await HttpClient.api.post('/core/importar-csv', formData);
